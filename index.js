@@ -1,5 +1,5 @@
 alert("Bienvenido al censo digital. Respondé las preguntas :D");
-const cantidadFamiliares = parseInt(prompt("Cantidad de familiares que van a contestar (en números)"));
+const cantidadFamiliares = parseInt(prompt("Cantidad de familiares que van a participar (en números)"));
 
 for (let i = 0; i < cantidadFamiliares; i++) {
     let nombre = prompt("Ingrese su nombre:");
