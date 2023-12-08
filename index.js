@@ -119,10 +119,10 @@ document.addEventListener('DOMContentLoaded', function () {
             categoria: categoria
         };
 
-        // Guardar los datos en localStorage
+        // Guardo los datos en localStorage
         localStorage.setItem('persona', JSON.stringify(persona));
 
-        // Redirigir a la página de tarjeta
+        // Redirijo a la página de tarjeta
         window.location.href = 'tarjeta.html';
     });
 });
