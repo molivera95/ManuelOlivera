@@ -58,3 +58,15 @@ button {
 button:hover {
     background-color: #0056b3;
 }
+
+
+/* Estilos para la tarjeta */
+
+.container {
+    width: 80%;
+    margin: 20px auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box
+}
