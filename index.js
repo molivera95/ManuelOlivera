@@ -1,7 +1,3 @@
-//Alerta al acceder:
-
-alert("Bienvenido al censo digital. Respondé las preguntas :D");
-
 // Array de personas:
 
 const personas = [
@@ -88,82 +84,45 @@ const personas = [
     ];
 
 
-// Ingreso de datos del censo:
+document.addEventListener('DOMContentLoaded', function () {
+    const censoForm = document.getElementById('censoForm');
 
-const cantidadFamiliares = parseInt(prompt("Cantidad de familiares que van a contestar (en números)"));
+    censoForm.addEventListener('submit', function (event) {
+        event.preventDefault();
 
-for (let i = 0; i < cantidadFamiliares; i++) {
-    let nombre = prompt("Ingrese su nombre:");
-    let apellido = prompt("Ingrese su apellido:");
-    let esHombre = confirm("Apretá aceptar si sos hombre. Si sos mujer, tocá cancelar");
-    let sexo;
-    let saludo;
-    let categoria
+        const nombre = document.getElementById('nombre').value;
+        const apellido = document.getElementById('apellido').value;
+        const sexo = document.getElementById('sexo').value;
+        const documento = document.getElementById('documento').value;
+        const edad = parseInt(document.getElementById('edad').value);
 
-    if (esHombre) {
-        saludo = "¡Bienvenido!";
-        sexo = "masculino"
-    } else {
-        saludo = "¡Bienvenida!";
-        sexo = "femenino"
-    }
+        let categoria;
 
-    let documento = prompt("Ingrese su número de documento:");
-    let edad = parseInt(prompt("Ingrese su edad:"));
+        if (edad >= 0 && edad <= 12) {
+            categoria = "niño";
+        } else if (edad >= 13 && edad <= 18) {
+            categoria = "adolescente";
+        } else if (edad >= 19 && edad <= 29) {
+            categoria = "joven";
+        } else if (edad >= 30 && edad <= 69) {
+            categoria = "adulto";
+        } else {
+            categoria = "adulto mayor";
+        }
 
-    if (edad >= 0 && edad <= 12) {
-        categoria = "niño"
-        alert("Hey " + nombre + " " + apellido + ", " + saludo + " Estás en la categoría: " + categoria + ".");
-    } else if (edad >= 13 && edad <= 18) {
-        categoria = "adolescente"
-        alert("Hey " + nombre + " " + apellido + ", " + saludo + " Estás en la categoría: " + categoria + ".");
-    } else if (edad >= 19 && edad <= 29) {
-        categoria = "joven"
-        alert("Hey " + nombre + " " + apellido + ", " + saludo + " Estás en la categoría: " + categoria + ".");
-    } else if (edad >= 30 && edad <= 69) {
-        categoria = "adulto"
-        alert("Hey " + nombre + " " + apellido + ", " + saludo + " Estás en la categoría: " + categoria + ".");
-    } else {
-        categoria = "adulto mayor"
-        alert("Hey " + nombre + " " + apellido + ", " + saludo + " Estás en la categoría: " + categoria + ".");
-    }
+        const persona = {
+            nombre: nombre,
+            apellido: apellido,
+            sexo: sexo,
+            documento: documento,
+            edad: edad,
+            categoria: categoria
+        };
 
+        // Guardar los datos en localStorage
+        localStorage.setItem('persona', JSON.stringify(persona));
 
-        // Creador de objetos para representar a la persona:
-
-    const persona = {
-        nombre: nombre,
-        apellido: apellido,
-        sexo: sexo,
-        documento: documento,
-        edad: edad,
-        categoria: categoria
-    };
-
-    // Función que pushea la persona al array:
-
-    personas.push(persona);
-    
-}
-
-// Muestra el array de personas en la consola:
-
-console.log("base de datos de personas", personas);
-
-
-// Agrupando personas por categoría
-const personasPorCategoria = personas.reduce((result, persona) => {
-    if (!result[persona.categoria]) {
-        result[persona.categoria] = [];
-    }
-    result[persona.categoria].push(persona);
-    return result;
-}, {});
-
-// Mostrar cada categoría en un console log diferente
-for (const categoria in personasPorCategoria) {
-    if (Object.hasOwnProperty.call(personasPorCategoria, categoria)) {
-        console.log(`Categoría: ${categoria}`);
-        console.log(personasPorCategoria[categoria]);
-    }
-};
+        // Redirigir a la página de tarjeta
+        window.location.href = 'tarjeta.html';
+    });
+});
