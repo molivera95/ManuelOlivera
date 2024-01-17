@@ -128,11 +128,10 @@ document.addEventListener('DOMContentLoaded', function () {
     let randomBtn = document.getElementById("random");
         randomBtn .addEventListener("click",
         function () {
-            // COPIAR ACA
             fetch('https://randomuser.me/api/')
     .then(response => response.json())
     .then(apiData => {
-   console.log("paso1");
+    console.log("paso1");
     // Agregar los datos obtenidos de la API a la persona
     const api = apiData.results[0];
     console.log("paso2");
