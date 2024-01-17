@@ -125,4 +125,57 @@ document.addEventListener('DOMContentLoaded', function () {
         // Redirijo a la página de tarjeta
         window.location.href = 'tarjeta.html';
     });
+    let randomBtn = document.getElementById("random");
+        randomBtn .addEventListener("click",
+        function () {
+            // COPIAR ACA
+            fetch('https://randomuser.me/api/')
+    .then(response => response.json())
+    .then(apiData => {
+   console.log("paso1");
+    // Agregar los datos obtenidos de la API a la persona
+    const api = apiData.results[0];
+    console.log("paso2");
+    const nombre = api.name.first;
+    const apellido = api.name.last;
+    let sexo = api.gender === "male" ? "Masculino" : "Femenino";
+    const documento = api.location.postcode;
+    const edad = api.dob.age;
+
+    let categoria;
+
+    if (edad >= 0 && edad <= 12) {
+        categoria = "niño";
+    } else if (edad >= 13 && edad <= 18) {
+        categoria = "adolescente";
+    } else if (edad >= 19 && edad <= 29) {
+        categoria = "joven";
+    } else if (edad >= 30 && edad <= 69) {
+        categoria = "adulto";
+    } else {
+        categoria = "adulto mayor";
+    }
+
+    const persona = {
+        nombre: nombre,
+        apellido: apellido,
+        sexo: sexo,
+        documento: documento,
+        edad: edad,
+        categoria: categoria
+    };
+
+    // Almaceno la información actualizada en localStorage
+    localStorage.setItem('persona', JSON.stringify(persona));
+    
+    // Redirijo a la página de tarjeta
+    window.location.href = 'tarjeta.html';
+  })
+  .catch(error => {
+    console.error('Error al obtener datos de la API:', error);
+    // Redirijo a la página de tarjeta incluso si hay un error con la API
+    window.location.href = 'tarjeta.html';
+  });
+        }
+        );
 });

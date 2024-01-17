@@ -21,3 +21,11 @@ document.addEventListener('DOMContentLoaded', function () {
         tarjetaDatos.innerHTML = '<p>No se encontraron datos almacenados.</p>';
     }
 });
+
+Swal.fire({
+    position: "top-end",
+    icon: "success",
+    title: "Usuario registrado!",
+    showConfirmButton: false,
+    timer: 1500
+});
