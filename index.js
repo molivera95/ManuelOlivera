@@ -131,10 +131,9 @@ document.addEventListener('DOMContentLoaded', function () {
             fetch('https://randomuser.me/api/')
     .then(response => response.json())
     .then(apiData => {
-    console.log("paso1");
-    // Agregar los datos obtenidos de la API a la persona
+            
+    // Agrego los datos obtenidos de la API a la persona
     const api = apiData.results[0];
-    console.log("paso2");
     const nombre = api.name.first;
     const apellido = api.name.last;
     let sexo = api.gender === "male" ? "Masculino" : "Femenino";
